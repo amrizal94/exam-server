@@ -11,7 +11,11 @@ const app = express();
 
 /** app middlewares */
 app.use(morgan('tiny'));
-app.use(cors());
+app.use(cors({
+    origin: [process.env.REACT_APP_SERVER_HOSTNAME],
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    credentials: true,
+}));
 app.use(express.json());
 config();
 
